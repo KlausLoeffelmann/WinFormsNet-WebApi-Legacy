@@ -16,7 +16,7 @@ namespace InvokeAsync
             _sendOrPostCallback = new SendOrPostCallback(ThingsToKickOfAsync);
 
             _syncContext = SynchronizationContext.Current;
-            _syncContext.Post(_sendOrPostCallback, null);
+            //_syncContext.Post(_sendOrPostCallback, null);
         }
 
         private async void ThingsToKickOfAsync(object _)
@@ -39,18 +39,18 @@ namespace InvokeAsync
             base.OnPaint(e);
         }
 
-        protected async override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
+        //protected async override void OnHandleCreated(EventArgs e)
+        //{
+        //    base.OnHandleCreated(e);
 
-            var test = await Task.Run(async () =>
-            {
-                Thread.SpinWait(100000);
-                var value1 = await this.InvokeAsync(AnInvokableAsyncMethod);
-                var value2 = await this.InvokeAsync(AnInvokableMethod);
-                return value1 + value2;
-            });
-        }
+        //    var test = await Task.Run(async () =>
+        //    {
+        //        Thread.SpinWait(100000);
+        //        var value1 = await this.InvokeAsync(AnInvokableAsyncMethod);
+        //        var value2 = await this.InvokeAsync(AnInvokableMethod);
+        //        return value1 + value2;
+        //    });
+        //}
 
         private int AnInvokableMethod()
         {
@@ -68,6 +68,7 @@ namespace InvokeAsync
             await Task.Delay(1000);
             Debug.Print("In AnAsyncMethod!");
             return await Task.FromResult(42);
+
         }
 
         private int SupposedToRunOnUiThread(int intVar)
