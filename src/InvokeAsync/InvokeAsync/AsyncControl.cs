@@ -1,17 +1,15 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace InvokeAsync
+namespace System.Windows.Forms
 {
-    public class CustomControl : Control
+    public class AsyncControl : Control
     {
         private SynchronizationContext _syncContext;
         private readonly SendOrPostCallback _sendOrPostCallback;
 
-        public CustomControl()
+        public AsyncControl()
         {
             _sendOrPostCallback = new SendOrPostCallback(ThingsToKickOfAsync);
 

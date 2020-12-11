@@ -1,5 +1,5 @@
 ﻿
-namespace InvokeAsync
+namespace SimpleInvokeDemo
 {
     partial class Form1
     {
@@ -29,7 +29,7 @@ namespace InvokeAsync
         /// </summary>
         private void InitializeComponent()
         {
-            this.customControl1 = new InvokeAsync.CustomControl();
+            this.customControl1 = new System.Windows.Forms.AsyncControl();
             this.lblCount = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -78,7 +78,7 @@ namespace InvokeAsync
 
         #endregion
 
-        private CustomControl customControl1;
+        private System.Windows.Forms.AsyncControl customControl1;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Button button1;
     }
