@@ -1,7 +1,7 @@
 ﻿
 namespace SimpleInvokeDemo
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,7 +31,7 @@ namespace SimpleInvokeDemo
         {
             this.customControl1 = new System.Windows.Forms.AsyncControl();
             this.lblCount = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnKickOfAsyncWork = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // customControl1
@@ -45,32 +45,32 @@ namespace SimpleInvokeDemo
             // lblCount
             // 
             this.lblCount.AutoSize = true;
-            this.lblCount.Location = new System.Drawing.Point(378, 382);
+            this.lblCount.Location = new System.Drawing.Point(364, 25);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(50, 20);
             this.lblCount.TabIndex = 1;
             this.lblCount.Text = "label1";
             // 
-            // button1
+            // btnKickOfAsyncWork
             // 
-            this.button1.Location = new System.Drawing.Point(314, 276);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(170, 38);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnKickOfAsyncWork.Location = new System.Drawing.Point(314, 276);
+            this.btnKickOfAsyncWork.Name = "btnKickOfAsyncWork";
+            this.btnKickOfAsyncWork.Size = new System.Drawing.Size(170, 38);
+            this.btnKickOfAsyncWork.TabIndex = 2;
+            this.btnKickOfAsyncWork.Text = "Kick of Async Work";
+            this.btnKickOfAsyncWork.UseVisualStyleBackColor = true;
+            this.btnKickOfAsyncWork.Click += new System.EventHandler(this.BtnKickOfAsyncWork_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnKickOfAsyncWork);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.customControl1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Simple Async Invoke Demo";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -80,7 +80,7 @@ namespace SimpleInvokeDemo
 
         private System.Windows.Forms.AsyncControl customControl1;
         private System.Windows.Forms.Label lblCount;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnKickOfAsyncWork;
     }
 }
 

@@ -5,13 +5,16 @@ using System.Windows.Forms;
 
 namespace SimpleInvokeDemo
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        private int counter;
-
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private async void BtnKickOfAsyncWork_Click(object sender, EventArgs e)
+        {
+            await DoComputeIntensiveWork();
         }
 
         private async Task<int> DoComputeIntensiveWork()
@@ -20,11 +23,11 @@ namespace SimpleInvokeDemo
             {
                 int result = 0;
 
-                for (var i = 0; i < int.MaxValue; i++)
+                for (var i = 0; i < 5; i++)
                 {
                     Thread.SpinWait(100000);
-                    result += await customControl1.InvokeAsync(() => DoSomeAsyncWorkOnTheUiThread(i));
-                    result += await customControl1.InvokeAsync(() => DoSomeNonAsyncWorkOnTheUiThread(i));
+                    result += await customControl1.InvokeAsync(async () => await DoSomeAsyncWorkOnTheUiThread(i));
+                    //result += await customControl1.InvokeAsync(() => DoSomeNonAsyncWorkOnTheUiThread(i));
                     await Task.Delay(100);
                 }
 
@@ -47,11 +50,5 @@ namespace SimpleInvokeDemo
             await Task.Delay(1000);
             return 42;
         }
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            await DoComputeIntensiveWork();
-        }
     }
-
 }

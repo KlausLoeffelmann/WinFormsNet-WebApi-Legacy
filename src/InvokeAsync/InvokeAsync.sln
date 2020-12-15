@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.30709.259
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncControl", "InvokeAsync\AsyncControl.csproj", "{6FECF0F6-8071-43EA-BB4F-6B3E25D5C4F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInvokeDemo", "SimpleInvokeDemo\SimpleInvokeDemo.csproj", "{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleInvokeDemo", "SimpleInvokeDemo\SimpleInvokeDemo.csproj", "{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blackboard WebApi-WebView2 Demo", "Blackboard WebApi-WebView2 Demo", "{1580E442-44B7-4F0C-A8EB-8BFBF364C333}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackBoardWebApi", "Blackboard\BlackBoardWebApi\BlackBoardWebApi.csproj", "{CBCF901D-22A5-49DF-8BB5-926D082CF587}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackBoardWinForms", "Blackboard\BlackBoardWinForms\BlackBoardWinForms.csproj", "{883FD30C-A291-462B-A74C-7E1FBB961F82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +27,21 @@ Global
 		{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCF901D-22A5-49DF-8BB5-926D082CF587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCF901D-22A5-49DF-8BB5-926D082CF587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCF901D-22A5-49DF-8BB5-926D082CF587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCF901D-22A5-49DF-8BB5-926D082CF587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883FD30C-A291-462B-A74C-7E1FBB961F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883FD30C-A291-462B-A74C-7E1FBB961F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883FD30C-A291-462B-A74C-7E1FBB961F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883FD30C-A291-462B-A74C-7E1FBB961F82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CBCF901D-22A5-49DF-8BB5-926D082CF587} = {1580E442-44B7-4F0C-A8EB-8BFBF364C333}
+		{883FD30C-A291-462B-A74C-7E1FBB961F82} = {1580E442-44B7-4F0C-A8EB-8BFBF364C333}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06CE99B5-3E86-4C73-B831-6A6EE6560F77}
