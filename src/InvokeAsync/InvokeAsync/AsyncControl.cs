@@ -1,69 +1,53 @@
-﻿using System.Threading;
+﻿#nullable enable
+
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace System.Windows.Forms
 {
     public class AsyncControl : Control
     {
-        public AsyncControl()
-        {
-        }
-
-        public async Task InvokeAsync(
+        public Task InvokeAsync(
             Func<Task> invokeDelegate,
-            object state = null,
-            CancellationToken cancellationToken = default,
             TimeSpan timeOutSpan = default,
-            params object[] args)
-        {
-            await InvokeAsync<Task>((Delegate)invokeDelegate, state, cancellationToken, timeOutSpan, args);
-        }
+            CancellationToken cancellationToken = default,
+            params object[] args) => InvokeAsync<Task>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
 
-        public async Task<T> InvokeAsync<T>(
+        public Task<T> InvokeAsync<T>(
             Func<T> invokeDelegate,
-            object state = null,
-            CancellationToken cancellationToken = default,
             TimeSpan timeOutSpan = default,
-            params object[] args)
-        {
-            return await InvokeAsync<T>((Delegate) invokeDelegate, state, cancellationToken, timeOutSpan, args);
-        }
+            CancellationToken cancellationToken = default,
+            params object[] args) => InvokeAsync<T>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
 
-        public async Task InvokeAsync(
+        public Task InvokeAsync(
             Action invokeDelegate,
-            object state = null,
-            CancellationToken cancellationToken = default,
             TimeSpan timeOutSpan = default,
-            params object[] args)
-        {
-            await InvokeAsync<object>((Delegate)invokeDelegate, state, cancellationToken, timeOutSpan, args);
-        }
+            CancellationToken cancellationToken = default,
+            params object[] args) => InvokeAsync<object>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
 
         public async Task<T> InvokeAsync<T>(
             Func<Task<T>> invokeDelegate,
-            object state = null,
-            CancellationToken cancellationToken = default,
             TimeSpan timeOutSpan = default,
+            CancellationToken cancellationToken = default,
             params object[] args)
         {
-            var task = await InvokeAsync<Task<T>>((Delegate)invokeDelegate, state, cancellationToken, timeOutSpan, args);
+            Task<T>? task = await InvokeAsync<Task<T>>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
             return await task;
         }
 
         private async Task<T> InvokeAsync<T>(
             Delegate invokeDelegate,
-            object state = null,
-            CancellationToken cancellationToken = default,
             TimeSpan timeOutSpan = default,
+            CancellationToken cancellationToken = default,
             params object[] args)
         {
             var tokenRegistration = default(CancellationTokenRegistration);
-            RegisteredWaitHandle registeredWaitHandle = null;
+            RegisteredWaitHandle? registeredWaitHandle = null;
 
             try
             {
-                var taskCompletionSource = new TaskCompletionSource<bool>();
-                var asyncResult = BeginInvoke(invokeDelegate, args);
+                TaskCompletionSource<bool> taskCompletionSource = new();
+                IAsyncResult? asyncResult = BeginInvoke(invokeDelegate, args);
 
                 registeredWaitHandle = ThreadPool.RegisterWaitForSingleObject(
                     asyncResult.AsyncWaitHandle,
@@ -77,8 +61,9 @@ namespace System.Windows.Forms
                     taskCompletionSource);
 
                 await taskCompletionSource.Task;
-                var returnObject = this.EndInvoke(asyncResult);
-                return (T) returnObject;
+
+                object? returnObject = EndInvoke(asyncResult);
+                return (T)returnObject;
             }
             finally
             {
@@ -86,11 +71,17 @@ namespace System.Windows.Forms
                 tokenRegistration.Dispose();
             }
 
-            void InvokeAsyncCallBack(object state, bool timeOut)
-                => ((TaskCompletionSource<bool>)state).TrySetResult(timeOut);
+            static void CancellationTokenRegistrationCallBack(object? state)
+            {
+                if (state is TaskCompletionSource<bool> source)
+                    source.TrySetCanceled();
+            }
 
-            void CancellationTokenRegistrationCallBack(object state)
-                => ((TaskCompletionSource<bool>)state).TrySetCanceled();
+            static void InvokeAsyncCallBack(object? state, bool timeOut)
+            {
+                if (state is TaskCompletionSource<bool> source)
+                    source.TrySetResult(timeOut);
+            }
         }
     }
 }
