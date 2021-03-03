@@ -7,32 +7,23 @@ namespace System.Windows.Forms
 {
     public class AsyncControl : Control
     {
-        public async Task InvokeAsync(
+        public Task InvokeAsync(
             Func<Task> invokeDelegate,
             TimeSpan timeOutSpan = default,
             CancellationToken cancellationToken = default,
-            params object[] args)
-        {
-            await InvokeAsync<Task>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
-        }
+            params object[] args) => InvokeAsync<Task>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
 
-        public async Task<T> InvokeAsync<T>(
+        public Task<T> InvokeAsync<T>(
             Func<T> invokeDelegate,
             TimeSpan timeOutSpan = default,
             CancellationToken cancellationToken = default,
-            params object[] args)
-        {
-            return await InvokeAsync<T>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
-        }
+            params object[] args) => InvokeAsync<T>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
 
-        public async Task InvokeAsync(
+        public Task InvokeAsync(
             Action invokeDelegate,
             TimeSpan timeOutSpan = default,
             CancellationToken cancellationToken = default,
-            params object[] args)
-        {
-            await InvokeAsync<object>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
-        }
+            params object[] args) => InvokeAsync<object>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
 
         public async Task<T> InvokeAsync<T>(
             Func<Task<T>> invokeDelegate,
@@ -40,7 +31,7 @@ namespace System.Windows.Forms
             CancellationToken cancellationToken = default,
             params object[] args)
         {
-            var task = await InvokeAsync<Task<T>>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
+            Task<T>? task = await InvokeAsync<Task<T>>((Delegate)invokeDelegate, timeOutSpan, cancellationToken, args);
             return await task;
         }
 
@@ -70,7 +61,8 @@ namespace System.Windows.Forms
                     taskCompletionSource);
 
                 await taskCompletionSource.Task;
-                var returnObject = this.EndInvoke(asyncResult);
+
+                object? returnObject = EndInvoke(asyncResult);
                 return (T)returnObject;
             }
             finally
