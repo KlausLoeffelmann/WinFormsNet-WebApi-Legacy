@@ -38,7 +38,7 @@ namespace SimpleInvokeDemo
                 {
                     // Doesn't work: Cross-Thread Exception.
                     // CustomerReportItem.AddCustomerReportToBindingList(bindingList, i);
-                    asyncControl.Invoke((MethodInvoker)delegate 
+                    Invoke((MethodInvoker)delegate 
                     { 
                         CustomerReportItem.AddCustomerReportToBindingList(bindingList, i); 
                     });
@@ -57,7 +57,9 @@ namespace SimpleInvokeDemo
                 {
                     // Doesn't work: Crashes.
                     // await CustomerReportItem.AddCustomerReportToBindingListAsync(bindingList, i);
-                    await asyncControl.InvokeAsync(()=>CustomerReportItem.AddCustomerReportToBindingListAsync(bindingList, i));
+                    await InvokeAsync(
+                        ()=>CustomerReportItem.AddCustomerReportToBindingListAsync(bindingList, i),
+                        CancellationToken.None);
                 }
             });
         }
@@ -71,7 +73,9 @@ namespace SimpleInvokeDemo
                 for (var i = 0; i < 5; i++)
                 {
                     Thread.SpinWait(100000);
-                    result += await asyncControl.InvokeAsync(async () => await DoSomeAsyncWorkOnTheUiThread(i));
+                    result += await InvokeAsync(
+                        async () => await DoSomeAsyncWorkOnTheUiThread(i),
+                        CancellationToken.None);
                     await Task.Delay(100);
                 }
 

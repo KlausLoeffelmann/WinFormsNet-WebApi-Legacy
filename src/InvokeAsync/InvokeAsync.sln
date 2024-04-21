@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30709.259
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.34819.229
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncControl", "InvokeAsync\AsyncControl.csproj", "{6FECF0F6-8071-43EA-BB4F-6B3E25D5C4F4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleInvokeDemo", "SimpleInvokeDemo\SimpleInvokeDemo.csproj", "{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blackboard WebApi-WebView2 Demo", "Blackboard WebApi-WebView2 Demo", "{1580E442-44B7-4F0C-A8EB-8BFBF364C333}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6FECF0F6-8071-43EA-BB4F-6B3E25D5C4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FECF0F6-8071-43EA-BB4F-6B3E25D5C4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FECF0F6-8071-43EA-BB4F-6B3E25D5C4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FECF0F6-8071-43EA-BB4F-6B3E25D5C4F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90436056-5E89-4D2A-9FAE-AC9B6040AD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU

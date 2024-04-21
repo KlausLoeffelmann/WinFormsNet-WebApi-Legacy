@@ -30,7 +30,6 @@ namespace SimpleInvokeDemo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.asyncControl = new System.Windows.Forms.AsyncControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnStartBlockingTask = new System.Windows.Forms.Button();
@@ -66,15 +65,6 @@ namespace SimpleInvokeDemo
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // asyncControl
-            // 
-            this.asyncControl.Location = new System.Drawing.Point(815, 3);
-            this.asyncControl.Margin = new System.Windows.Forms.Padding(4);
-            this.asyncControl.Name = "asyncControl";
-            this.asyncControl.Size = new System.Drawing.Size(161, 23);
-            this.asyncControl.TabIndex = 0;
-            this.asyncControl.Text = "customControl1";
             // 
             // tabControl1
             // 
@@ -361,7 +351,6 @@ namespace SimpleInvokeDemo
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 562);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.asyncControl);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Simple Async Invoke Demo";
@@ -379,7 +368,6 @@ namespace SimpleInvokeDemo
 
         #endregion
 
-        private System.Windows.Forms.AsyncControl asyncControl;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

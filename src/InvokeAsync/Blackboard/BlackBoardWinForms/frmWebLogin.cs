@@ -10,7 +10,6 @@ namespace BlackBoardWinForms
     public partial class frmWebLogin : Form, ICustomWebUi
     {
         private TaskCompletionSource<Uri> _loginOverAwaiter = new TaskCompletionSource<Uri>();
-        private AsyncControl asyncControl;
 
         private object _browserInitializationAwaiterGuard = new object();
         private Uri _redirectUri;
@@ -19,10 +18,8 @@ namespace BlackBoardWinForms
         {
             InitializeComponent();
 
-            asyncControl = new AsyncControl();
-            this.Controls.Add(asyncControl);
             tsEndLoginButton.ButtonClick += TsEndLoginButton_ButtonClick;
-            this.SizeChanged += FrmWebLogin_SizeChanged;
+            SizeChanged += FrmWebLogin_SizeChanged;
         }
 
         private void FrmWebLogin_SizeChanged(object sender, EventArgs e) 
@@ -64,10 +61,22 @@ namespace BlackBoardWinForms
         {
             _redirectUri = redirectUri;
 
-            return await asyncControl.InvokeAsync(
-                () => loginWebView.NavigateToAsync(
-                    authorizationUri.ToString(),
-                    (e, uri) => uri.StartsWith(_redirectUri.ToString())));
+            try
+            {
+                return await InvokeAsync(
+                    async () => await loginWebView.NavigateToAsync(
+                        authorizationUri.ToString(),
+                        (e, uri) => uri.StartsWith(_redirectUri.ToString())),
+                    cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message );
+                // Todo: Handle the exception here
+                // Log the exception or take appropriate action
+                // Return a default value or rethrow the exception
+                return null;
+            }
         }
 
         private void TsEndLoginButton_ButtonClick(object sender, EventArgs e)

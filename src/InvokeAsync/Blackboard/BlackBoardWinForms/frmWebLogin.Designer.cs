@@ -48,7 +48,6 @@ namespace BlackBoardWinForms
             this.loginWebView.Name = "loginWebView";
             this.loginWebView.Size = new System.Drawing.Size(758, 688);
             this.loginWebView.TabIndex = 2;
-            this.loginWebView.Text = "loginWebView";
             this.loginWebView.ZoomFactor = 1D;
             // 
             // statusStrip1
@@ -121,8 +120,6 @@ namespace BlackBoardWinForms
         private Microsoft.Web.WebView2.WinForms.WebView2 loginWebView;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsUriLabel;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripStatusLabel tsSizeLabel;
         private System.Windows.Forms.ToolStripSplitButton tsEndLoginButton;
     }
